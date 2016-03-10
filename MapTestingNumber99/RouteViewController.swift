@@ -14,13 +14,18 @@ class RouteViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     @IBOutlet weak var routeMap: MKMapView!
     var destination:MKMapItem?
     var locationManager: CLLocationManager!
+    var isInitialised = false
     
     //Zoom Method - need to run CLLocation Services.
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        self.routeMap.setRegion(region, animated: true)
+        if !isInitialised
+        {
+            isInitialised = true
+            let location = locations.last
+            let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            self.routeMap.setRegion(region, animated: true)
+        }
     }
     
     override func viewDidLoad() {
@@ -49,7 +54,8 @@ class RouteViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         let request = MKDirectionsRequest()
         request.source = MKMapItem.mapItemForCurrentLocation()
         request.destination = destination!
-        request.requestsAlternateRoutes = false
+        request.requestsAlternateRoutes = true
+        request.transportType = .Automobile
         
         let directions = MKDirections(request: request)
         
