@@ -1,48 +1,108 @@
 //
 //  ViewController.swift
-//  MapTestingNumber99
+//  MapTesting
 //
-//  Created by Opeyemi Fasuyi on 04/03/2016.
+//  Created by Opeyemi Fasuyi on 11/01/2016.
 //  Copyright © 2016 Opeyemi Fasuyi. All rights reserved.
 //
 
 import UIKit
 import MapKit
+import CoreLocation
+import Foundation
+import AddressBook
 
-class ViewController: UIViewController, MKMapViewDelegate {
-
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
+    
+    var searchController:UISearchController!
+    var annotation:MKAnnotation!
+    var localSearchRequest:MKLocalSearchRequest!
+    var localSearch:MKLocalSearch!
+    var localSearchResponse:MKLocalSearchResponse!
+    var error:NSError!
+    var pointAnnotation:MKPointAnnotation!
+    var pinAnnotationView:MKPinAnnotationView!
+    
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var searchText: UITextField!
+    
     var matchingItems: [MKMapItem] = [MKMapItem]()
+    var locationManager: CLLocationManager!
+    
+    let searchRadius: CLLocationDistance = 2000
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.showsUserLocation = true
-        //mapView.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            self.mapView.showsUserLocation = true
+        }
     }
     
-
+    // MARK: - Location Delegate Methods
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        self.mapView.setRegion(region, animated: true)
+        let latitude: Double = location!.coordinate.latitude
+        let longitude: Double = location!.coordinate.longitude
+        let initialLocation = CLLocation(latitude: latitude, longitude: longitude)
+        // 1
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = "Hotels"
+        // 2
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        
+        request.region = MKCoordinateRegion(center: initialLocation.coordinate, span: span)
+        // 3
+        let search = MKLocalSearch(request: request)
+        search.startWithCompletionHandler {response, error in guard let response = response else {
+            print("Search error: \(error)")
+            return
+            }
+            
+            for item in response.mapItems {
+                print("Name = \(item.name)")
+                print("Phone = \(item.phoneNumber)")
+                
+                self.matchingItems.append(item as MKMapItem)
+                print("Matching items = \(self.matchingItems.count)")
+                
+                print(item.name)
+                self.addPinToMapView(item.name!, latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
+            }
+        }
+        
+        locationManager.stopUpdatingLocation()
+        
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, searchRadius * 2.0, searchRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+        
+    }
+    
+    
+    func addPinToMapView(title: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = title
+        mapView.addAnnotation(annotation)
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError){
+        print("Error: " + error.localizedDescription)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func zoomIn(sender: AnyObject) {
-        //let userLocation = mapView.userLocation
-        
-        //let region = MKCoordinateRegionMakeWithDistance(
-            //userLocation.location!.coordinate, 2000, 2000)
-        
-        if let userLocation = mapView.userLocation.location {
-            let region = MKCoordinateRegionMakeWithDistance(
-                userLocation.coordinate, 500, 500)
-            mapView.setRegion(region, animated: true)
-        }
-        
-        //mapView.setRegion(region, animated: true)
-    }
-
     @IBAction func changeMapType(sender: AnyObject) {
         if mapView.mapType == MKMapType.Standard {
             mapView.mapType = MKMapType.Satellite
@@ -50,48 +110,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
             mapView.mapType = MKMapType.Standard
         }
     }
-    
-    @IBAction func textFieldReturn(sender: AnyObject) {
-        sender.resignFirstResponder()
-        mapView.removeAnnotations(mapView.annotations)
-        self.performSearch()
-    }
-    
-    func performSearch() {
-        
-        matchingItems.removeAll()
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = searchText.text
-        request.region = mapView.region
-        
-        let search = MKLocalSearch(request: request)
-        
-        //search.startWithCompletionHandler({(response: MKLocalSearchResponse!, error: NSError!) in
-        search.startWithCompletionHandler({(response: MKLocalSearchResponse?, error: NSError?) in
-            
-            if error != nil {
-                print("Error occured in search: \(error!.localizedDescription)")
-            } else if response!.mapItems.count == 0 {
-                print("No matches found")
-            } else {
-                print("Matches found")
-                
-                for item in response!.mapItems {
-                    print("Name = \(item.name)")
-                    print("Phone = \(item.phoneNumber)")
-                    
-                    self.matchingItems.append(item as MKMapItem)
-                    print("Matching items = \(self.matchingItems.count)")
-                    
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = item.placemark.coordinate
-                    annotation.title = item.name
-                    self.mapView.addAnnotation(annotation)
-                }
-            }
-        })
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue,
         sender: AnyObject?) {
             

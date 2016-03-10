@@ -9,18 +9,34 @@
 import UIKit
 import MapKit
 
-class RouteViewController: UIViewController, MKMapViewDelegate {
+class RouteViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var routeMap: MKMapView!
     var destination:MKMapItem?
+    var locationManager: CLLocationManager!
+    
+    //Zoom Method - need to run CLLocation Services.
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.routeMap.setRegion(region, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        routeMap.showsUserLocation = true
-        routeMap.delegate = self
-        self.getDirections()
-        // Do any additional setup after loading the view.
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            routeMap.showsUserLocation = true
+            routeMap.delegate = self
+            self.getDirections()
+            // Do any additional setup after loading the view.
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,11 +75,6 @@ class RouteViewController: UIViewController, MKMapViewDelegate {
             for step in route.steps {
                 print(step.instructions)
             }
-        }
-        if let userLocation = routeMap.userLocation.location {
-            let region = MKCoordinateRegionMakeWithDistance(
-                userLocation.coordinate, 500, 500)
-            routeMap.setRegion(region, animated: true)
         }
     }
     
