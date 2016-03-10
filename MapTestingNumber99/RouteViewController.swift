@@ -26,6 +26,7 @@ class RouteViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.routeMap.setRegion(region, animated: true)
         }
+        
     }
     
     override func viewDidLoad() {
@@ -42,6 +43,8 @@ class RouteViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             self.getDirections()
             // Do any additional setup after loading the view.
         }
+        let logButton : UIBarButtonItem = UIBarButtonItem(title: "Open In Apple Maps", style: UIBarButtonItemStyle.Plain, target: self, action: "openAppleMaps:")
+        self.navigationItem.rightBarButtonItem = logButton
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,6 +94,12 @@ class RouteViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             renderer.strokeColor = UIColor.blueColor()
             renderer.lineWidth = 5.0
             return renderer
+    }
+    
+    func openAppleMaps(sender: UIBarButtonItem) {
+            let location = destination
+            let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+            location!.openInMapsWithLaunchOptions(launchOptions)
     }
 
     /*
