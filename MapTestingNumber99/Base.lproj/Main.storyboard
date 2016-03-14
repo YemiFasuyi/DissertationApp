@@ -176,8 +176,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eav-DV-Vjl">
-                                <rect key="frame" x="7" y="12" width="224" height="170"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eav-DV-Vjl">
+                                <rect key="frame" x="0.0" y="0.0" width="211" height="171"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="145" id="CcO-qD-Oqj"/>
                                     <constraint firstAttribute="width" constant="145" id="Dmm-K1-8bE"/>
@@ -190,7 +190,7 @@
                                 <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="-160" minY="148" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
-                                <state key="normal" title="ATM" image="atm">
+                                <state key="normal" title="ATM" image="atm512">
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
@@ -226,8 +226,8 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="gGR-IC-sAK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjb-n7-3Jx">
-                                <rect key="frame" x="270" y="28" width="224" height="170"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjb-n7-3Jx">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="171"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="145" id="4WX-Ja-PNB"/>
                                     <constraint firstAttribute="height" constant="165" id="GDw-g9-Kvs"/>
@@ -240,7 +240,7 @@
                                 <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="-170" minY="144" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
-                                <state key="normal" title="Restaurant" image="chefs">
+                                <state key="normal" title="Restaurant" image="chef512">
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
@@ -276,58 +276,8 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="HDg-qh-9LH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tml-nw-TDW">
-                                <rect key="frame" x="188" y="-34" width="224" height="170"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="1dd-ja-3GH"/>
-                                    <constraint firstAttribute="height" constant="161" id="3FQ-1n-mfA"/>
-                                    <constraint firstAttribute="height" constant="165" id="4QJ-U1-JKK"/>
-                                    <constraint firstAttribute="width" constant="145" id="5zr-1v-LiW"/>
-                                    <constraint firstAttribute="width" constant="145" id="f3l-Nd-ghI"/>
-                                    <constraint firstAttribute="width" constant="145" id="hdj-DQ-dqI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="-170" minY="144" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
-                                <state key="normal" title="Hotel" image="hotel">
-                                    <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="1dd-ja-3GH"/>
-                                        <exclude reference="3FQ-1n-mfA"/>
-                                        <exclude reference="4QJ-U1-JKK"/>
-                                        <exclude reference="5zr-1v-LiW"/>
-                                        <exclude reference="f3l-Nd-ghI"/>
-                                        <exclude reference="hdj-DQ-dqI"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="1dd-ja-3GH"/>
-                                        <include reference="hdj-DQ-dqI"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="4QJ-U1-JKK"/>
-                                        <include reference="5zr-1v-LiW"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="3FQ-1n-mfA"/>
-                                        <include reference="f3l-Nd-ghI"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="btnHotelClicked:" destination="Qvf-z1-JvQ" eventType="touchUpInside" id="cIq-ej-PJ4"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="g7Q-Fj-7fd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhx-E6-1nu">
-                                <rect key="frame" x="188" y="-34" width="224" height="170"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhx-E6-1nu">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="171"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="145" id="1Gc-aZ-p6L"/>
                                     <constraint firstAttribute="width" constant="145" id="GJr-Vq-Ivt"/>
@@ -340,7 +290,7 @@
                                 <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="-170" minY="138" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
-                                <state key="normal" title="Parking" image="parking">
+                                <state key="normal" title="Parking" image="parking512">
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
@@ -376,8 +326,8 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="48S-Jj-qBF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p09-sQ-jDF">
-                                <rect key="frame" x="188" y="-34" width="224" height="170"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p09-sQ-jDF">
+                                <rect key="frame" x="0.0" y="0.0" width="293" height="171"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="145" id="1gM-pJ-swJ"/>
                                     <constraint firstAttribute="height" constant="161" id="2PZ-8a-taX"/>
@@ -390,7 +340,7 @@
                                 <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="-170" minY="144" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
-                                <state key="normal" title="Petrol Station" image="gas">
+                                <state key="normal" title="Petrol Station" image="petrol512">
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
@@ -426,6 +376,56 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="VJO-lP-Fyq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tml-nw-TDW">
+                                <rect key="frame" x="0.0" y="0.0" width="219" height="171"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="165" id="1dd-ja-3GH"/>
+                                    <constraint firstAttribute="height" constant="161" id="3FQ-1n-mfA"/>
+                                    <constraint firstAttribute="height" constant="165" id="4QJ-U1-JKK"/>
+                                    <constraint firstAttribute="width" constant="145" id="5zr-1v-LiW"/>
+                                    <constraint firstAttribute="width" constant="145" id="f3l-Nd-ghI"/>
+                                    <constraint firstAttribute="width" constant="145" id="hdj-DQ-dqI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="-170" minY="144" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                                <state key="normal" title="Hotel" image="hotel512">
+                                    <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1dd-ja-3GH"/>
+                                        <exclude reference="3FQ-1n-mfA"/>
+                                        <exclude reference="4QJ-U1-JKK"/>
+                                        <exclude reference="5zr-1v-LiW"/>
+                                        <exclude reference="f3l-Nd-ghI"/>
+                                        <exclude reference="hdj-DQ-dqI"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="1dd-ja-3GH"/>
+                                        <include reference="hdj-DQ-dqI"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="4QJ-U1-JKK"/>
+                                        <include reference="5zr-1v-LiW"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="3FQ-1n-mfA"/>
+                                        <include reference="f3l-Nd-ghI"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="btnHotelClicked:" destination="Qvf-z1-JvQ" eventType="touchUpInside" id="cIq-ej-PJ4"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="g7Q-Fj-7fd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -455,7 +455,7 @@
                             <constraint firstItem="eav-DV-Vjl" firstAttribute="leading" secondItem="Anu-5g-UPd" secondAttribute="leading" constant="22" id="ii4-aH-h97"/>
                             <constraint firstAttribute="trailing" secondItem="tml-nw-TDW" secondAttribute="trailing" constant="180" id="n2U-2H-jV5"/>
                             <constraint firstItem="gjb-n7-3Jx" firstAttribute="top" secondItem="QlQ-wh-C3a" secondAttribute="bottom" constant="25" id="qsW-CQ-FYE"/>
-                            <constraint firstItem="Yhx-E6-1nu" firstAttribute="top" secondItem="QlQ-wh-C3a" secondAttribute="bottom" constant="430" id="rg3-OU-Ckz"/>
+                            <constraint firstItem="Yhx-E6-1nu" firstAttribute="top" secondItem="QlQ-wh-C3a" secondAttribute="bottom" constant="420" id="rg3-OU-Ckz"/>
                             <constraint firstItem="p09-sQ-jDF" firstAttribute="top" secondItem="QlQ-wh-C3a" secondAttribute="bottom" constant="10" id="sk5-5b-CGb"/>
                             <constraint firstItem="p09-sQ-jDF" firstAttribute="top" secondItem="Anu-5g-UPd" secondAttribute="top" constant="28" id="tmf-Bx-9Bq"/>
                             <constraint firstAttribute="trailing" secondItem="p09-sQ-jDF" secondAttribute="trailing" constant="25" id="vAJ-zG-Hn6"/>
@@ -528,9 +528,9 @@
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="gjb-n7-3Jx"/>
-                                <include reference="tml-nw-TDW"/>
                                 <include reference="Yhx-E6-1nu"/>
                                 <include reference="p09-sQ-jDF"/>
+                                <include reference="tml-nw-TDW"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="gVb-Ex-lhl"/>
@@ -555,11 +555,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="atm" width="170" height="170"/>
-        <image name="chefs" width="170" height="170"/>
-        <image name="gas" width="170" height="170"/>
-        <image name="hotel" width="170" height="170"/>
-        <image name="parking" width="170" height="170"/>
+        <image name="atm512" width="170" height="170"/>
+        <image name="chef512" width="170" height="170"/>
+        <image name="hotel512" width="170" height="170"/>
+        <image name="parking512" width="170" height="170"/>
+        <image name="petrol512" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HDg-qh-9LH"/>
