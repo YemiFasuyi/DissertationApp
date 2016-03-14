@@ -8,12 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
     
+    //lazy var searchBar:UISearchBar = UISearchBar(frame: CGRectMake(0, 0, 200, 20))
+    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 0))
     var toPassVariable:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        searchBar.placeholder = "Search a Service"
+        navigationItem.titleView = searchBar
+        //let leftNavBarButton = UIBarButtonItem(customView:searchBar)
+        //self.navigationItem.leftBarButtonItem = leftNavBarButton
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -21,7 +29,25 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        toPassVariable = searchBar.text
+        /*let alert = UIAlertController(title: "Alert!!!", message: toPassVariable, preferredStyle: UIAlertControllerStyle.Alert)
+        let okayButton = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+        alert.addAction(okayButton)
+        
+        presentViewController(alert, animated: true, completion: nil)*/
+        self.performSegueWithIdentifier("mySegue", sender: nil)
+        
+    }
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText \(searchText)")
+    }
     
+    /*func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        print("searchText \(searchBar.text)")
+    }*/
+
     @IBAction func btnATMClicked(sender: AnyObject) {
         toPassVariable = "atm"
     }
@@ -45,11 +71,18 @@ class ViewController: UIViewController {
             alert.addAction(okayButton)
             
             presentViewController(alert, animated: true, completion: nil)*/
-            
-            let test = segue.destinationViewController as! MapViewController
-            
-            test.toPass = toPassVariable
+            if(segue.identifier == "mySegue")
+            {
+                let test = segue.destinationViewController as! MapViewController
+                test.toPass = toPassVariable
+            }
+            else
+            {
+                let test = segue.destinationViewController as! MapViewController
+                test.toPass = toPassVariable
+            }
 
     }
+    
     
 }
