@@ -17,7 +17,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        searchBar.placeholder = "Search a Service"
+        searchBar.placeholder = "Search for a service, business or industry"
         navigationItem.titleView = searchBar
         //let leftNavBarButton = UIBarButtonItem(customView:searchBar)
         //self.navigationItem.leftBarButtonItem = leftNavBarButton
@@ -41,6 +41,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
     }
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
         print("searchText \(searchText)")
     }
     
