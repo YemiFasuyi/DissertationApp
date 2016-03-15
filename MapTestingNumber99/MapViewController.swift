@@ -23,6 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
     var toPass:String!
+    var mapItems: [MKMapItem] = [MKMapItem]()
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -41,6 +42,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
             self.mapView.showsUserLocation = true
+            self.mapView.delegate = self
         }
     }
     
@@ -71,6 +73,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             for item in response.mapItems {
                 print("Name = \(item.name)")
                 print("Phone = \(item.phoneNumber)")
+                print("Website= \(item.url)")
+                print("Address= \(item.placemark)")
                 
                 self.matchingItems.append(item as MKMapItem)
                 print("Matching items = \(self.matchingItems.count)")
@@ -86,16 +90,58 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.setRegion(coordinateRegion, animated: true)
         
     }
-    
-    
     func addPinToMapView(title: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = title
+        
         mapView.addAnnotation(annotation)
     }
     
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            pinView!.rightCalloutAccessoryView = UIButton(type:.DetailDisclosure) as UIButton
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        return pinView
+    }
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        /*let selectedLoc = view.annotation
+        
+        print("Annotation '\(selectedLoc!.title!)' has been selected")
+        
+        
+        let currentLocMapItem = MKMapItem.mapItemForCurrentLocation()
+        
+        let selectedPlacemark = MKPlacemark(coordinate: selectedLoc!.coordinate, addressDictionary: nil)
+        let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
+        
+        
+        mapItems = [selectedMapItem, currentLocMapItem]
+        print(selectedMapItem)*/
+        
+        if control == view.rightCalloutAccessoryView {
+            performSegueWithIdentifier("DetailsSegue", sender: self)
+        }
+        
+    }
+
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError){
         print("Error: " + error.localizedDescription)
     }
@@ -113,11 +159,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     override func prepareForSegue(segue: UIStoryboardSegue,
         sender: AnyObject?) {
+            if(segue.identifier == "DetailsSegue")
+            {
+                let destination = segue.destinationViewController as!
+                DetailsTableViewController
+                
+                destination.mapItems = self.matchingItems
+            }
+            else
+            {
+                let destination = segue.destinationViewController as!
+                ResultsTableViewController
             
-            let destination = segue.destinationViewController as!
-            ResultsTableViewController
-            
-            destination.mapItems = self.matchingItems
+                destination.mapItems = self.matchingItems
+            }
     }
 }
 

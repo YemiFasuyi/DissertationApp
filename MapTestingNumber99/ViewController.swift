@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import AddressBookUI
+import Contacts
+import ContactsUI
+import CloudKit
 
 class ViewController: UIViewController, UISearchBarDelegate {
     
     //lazy var searchBar:UISearchBar = UISearchBar(frame: CGRectMake(0, 0, 200, 20))
     lazy var searchBar:UISearchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 0))
     var toPassVariable:String!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -23,6 +27,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         //self.navigationItem.leftBarButtonItem = leftNavBarButton
 
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,11 +37,13 @@ class ViewController: UIViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
         toPassVariable = searchBar.text
+        
         /*let alert = UIAlertController(title: "Alert!!!", message: toPassVariable, preferredStyle: UIAlertControllerStyle.Alert)
         let okayButton = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
         alert.addAction(okayButton)
         
         presentViewController(alert, animated: true, completion: nil)*/
+        
         self.performSegueWithIdentifier("mySegue", sender: nil)
         
     }
@@ -83,6 +90,5 @@ class ViewController: UIViewController, UISearchBarDelegate {
             }
 
     }
-    
     
 }
