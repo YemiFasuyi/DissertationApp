@@ -21,12 +21,22 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GrP-Q7-3Rr">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem title="Map View" id="umb-20-4aT">
-                                        <connections>
-                                            <action selector="changeMapType:" destination="BYZ-38-t0r" id="LVg-Cl-Uiv"/>
-                                        </connections>
+                                    <barButtonItem style="plain" id="ycc-gf-m0G">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="U5X-nh-dUI">
+                                            <rect key="frame" x="-60" y="-14" width="121" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Standard"/>
+                                                <segment title="Satellite"/>
+                                                <segment title="Hybrid"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="changeMapView:" destination="BYZ-38-t0r" eventType="valueChanged" id="W6Q-Iz-Eyv"/>
+                                            </connections>
+                                        </segmentedControl>
                                     </barButtonItem>
-                                    <barButtonItem title="                                                        List" id="RXe-wP-NNm">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cH3-wC-NBQ"/>
+                                    <barButtonItem title="List View" id="RXe-wP-NNm">
                                         <connections>
                                             <segue destination="4it-v3-4Ms" kind="show" id="rTm-76-j5h"/>
                                         </connections>
@@ -50,6 +60,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="dWu-zs-CNa"/>
                     <connections>
+                        <outlet property="mapType" destination="U5X-nh-dUI" id="kDG-H6-shH"/>
                         <outlet property="mapView" destination="8kF-k7-UBm" id="1Xt-JZ-dIn"/>
                         <segue destination="eIi-fb-onh" kind="show" id="yqw-Ng-G0V"/>
                     </connections>
@@ -572,6 +583,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0jV-O6-kQY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1Jo-Ik-iNt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a98-bx-nsl">

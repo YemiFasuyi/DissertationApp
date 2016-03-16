@@ -29,6 +29,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var detailsNumber:String!
     var detailsUrl:String!
     
+    @IBOutlet weak var mapType: UISegmentedControl!
+    
     @IBOutlet weak var mapView: MKMapView!
     
     var matchingItems: [MKMapItem] = [MKMapItem]()
@@ -47,6 +49,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.startUpdatingLocation()
             self.mapView.showsUserLocation = true
             self.mapView.delegate = self
+            mapType.setWidth(65, forSegmentAtIndex: 0)
+            mapType.setWidth(65, forSegmentAtIndex: 1)
+            mapType.setWidth(65, forSegmentAtIndex: 2)
         }
     }
     
@@ -161,12 +166,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func changeMapType(sender: AnyObject) {
-        if mapView.mapType == MKMapType.Standard {
-            mapView.mapType = MKMapType.Satellite
-        } else {
+    
+    @IBAction func changeMapView(sender: AnyObject) {
+        if mapType.selectedSegmentIndex == 0{
             mapView.mapType = MKMapType.Standard
+        }else if mapType.selectedSegmentIndex == 1{
+            mapView.mapType = MKMapType.Satellite
+        }else if mapType.selectedSegmentIndex == 2{
+            mapView.mapType = MKMapType.Hybrid
         }
+        
     }
     override func prepareForSegue(segue: UIStoryboardSegue,
         sender: AnyObject?) {
