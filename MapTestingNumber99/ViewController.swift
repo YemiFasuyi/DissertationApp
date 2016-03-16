@@ -19,13 +19,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
-        searchBar.placeholder = "Search for a service, business or industry"
-        navigationItem.titleView = searchBar
-        //let leftNavBarButton = UIBarButtonItem(customView:searchBar)
-        //self.navigationItem.leftBarButtonItem = leftNavBarButton
-
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     @IBAction func showSearchBar(sender: AnyObject) {

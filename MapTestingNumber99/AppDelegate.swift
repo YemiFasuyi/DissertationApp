@@ -49,13 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Custom functions
     
-    /*class func getAppDelegate() -> AppDelegate {
+    class func getAppDelegate() -> AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
     
     
     func showMessage(message: String) {
-        let alertController = UIAlertController(title: "Birthdays", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(title: "What's Near?", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
         let dismissAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
         }
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         default:
             completionHandler(accessGranted: false)
         }
-    }*/
+    }
 
 
 }

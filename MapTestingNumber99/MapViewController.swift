@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import Foundation
 import AddressBook
+import Contacts
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
     
@@ -25,9 +26,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var toPass:String!
     var mapItems: [MKMapItem] = [MKMapItem]()
     var detailsName:String!
-    var detailsAddress:String!
-    var detailsNumber:String!
-    var detailsUrl:String!
+    var estimatedInfo = NSMutableArray()
+    
     
     @IBOutlet weak var mapType: UISegmentedControl!
     
@@ -52,6 +52,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             mapType.setWidth(65, forSegmentAtIndex: 0)
             mapType.setWidth(65, forSegmentAtIndex: 1)
             mapType.setWidth(65, forSegmentAtIndex: 2)
+            GatheringData()
         }
     }
     
@@ -80,11 +81,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             
             for item in response.mapItems {
-                self.detailsName = "\(item.name)"
-                self.detailsNumber = "\(item.phoneNumber)"
-                self.detailsAddress = "\(item.placemark)"
-                self.detailsUrl = "\(item.url)"
-                
                 print("Name = \(item.name)")
                 print("Phone = \(item.phoneNumber)")
                 print("Website= \(item.url)")
@@ -116,7 +112,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
-            //return nil so map view draws "blue dot" for standard user location
             return nil
         }
         
@@ -136,22 +131,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        //let selectedLoc = view.annotation
-        //matchingItems.
-        
-        //print("Annotation '\(selectedLoc!.title!)' has been selected")
-        //print("Description '\(selectedLoc!.)' has been selected")
-        //print("Coordinate '\(selectedLoc!.coordinate)' has been selected")
-        
-        /*let currentLocMapItem = MKMapItem.mapItemForCurrentLocation()
-        
-        let selectedPlacemark = MKPlacemark(coordinate: selectedLoc!.coordinate, addressDictionary: nil)
-        let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
-        
-        
-        mapItems = [selectedMapItem, currentLocMapItem]
-        print(selectedMapItem)*/
-        
         if control == view.rightCalloutAccessoryView {
             performSegueWithIdentifier("DetailsSegue", sender: self)
         }
@@ -164,7 +143,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func changeMapView(sender: AnyObject) {
@@ -181,10 +159,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         sender: AnyObject?) {
             if(segue.identifier == "DetailsSegue")
             {
-                //let destination = segue.destinationViewController as!
-                //DetailsTableViewController
-                
-                //destination.mapItems = self.matchingItems.indexOf(<#T##element: MKMapItem##MKMapItem#>)
                 let destination = segue.destinationViewController as!
                 ResultsTableViewController
                 
@@ -197,6 +171,65 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
                 destination.mapItems = self.matchingItems
             }
+    }
+    
+    func GatheringData(){
+        let myString: String = UIDevice.currentDevice().name
+        var myStringArr = myString.componentsSeparatedByString(" ")
+        detailsName = myStringArr[0]
+        let myString2: String = detailsName
+        var myStringArr2 = myString2.componentsSeparatedByString("'")
+        detailsName = myStringArr2[0]
+        print(detailsName)
+        
+        var searchParameters: [String] = [detailsName, "My Number", "Me"]
+        
+        for var i = 0; i<=2; ++i {
+            if(findDataThroughContacts(searchParameters[i]) == true){
+                let contact = estimatedInfo.objectAtIndex(0) as! CNContact
+                let userFullName = "\(contact.givenName) \(contact.familyName)"
+                var userPhoneNumber:String!
+                //let userPhoneNumber = contact.phoneNumbers as! CNPhoneNumber
+                for phoneNo in contact.phoneNumbers {
+                    userPhoneNumber = (phoneNo.value as! CNPhoneNumber).stringValue
+                }
+
+                print(userFullName)
+                print(userPhoneNumber)
+                break;
+            }
+        }
+        
+    }
+    
+    func findDataThroughContacts(searchData: String) -> Bool{
+        
+        let predicate = CNContact.predicateForContactsMatchingName(searchData)
+        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey, CNContactBirthdayKey, CNContactImageDataKey]
+        var contacts = [CNContact]()
+        var message: String!
+        
+        let contactsStore = AppDelegate.getAppDelegate().contactStore
+        do {
+            contacts = try contactsStore.unifiedContactsMatchingPredicate(predicate, keysToFetch: keys)
+            
+            if contacts.count == 0 {
+                message = "No contacts were found matching the given name."
+                print(message)
+            }
+            for contact in contacts {
+                print(contact)
+                self.estimatedInfo.addObject(contact)
+                return true
+            }
+            
+        }
+        catch {
+            message = "Unable to fetch contacts."
+            print(message)
+        }
+        return false
+
     }
 }
 
