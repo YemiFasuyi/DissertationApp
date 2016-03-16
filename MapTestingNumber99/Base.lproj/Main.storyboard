@@ -38,7 +38,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cH3-wC-NBQ"/>
                                     <barButtonItem title="List View" id="RXe-wP-NNm">
                                         <connections>
-                                            <segue destination="4it-v3-4Ms" kind="show" id="rTm-76-j5h"/>
+                                            <segue destination="4it-v3-4Ms" kind="show" identifier="DetailsSegue" id="rTm-76-j5h"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

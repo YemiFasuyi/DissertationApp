@@ -181,10 +181,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         sender: AnyObject?) {
             if(segue.identifier == "DetailsSegue")
             {
-                let destination = segue.destinationViewController as!
-                DetailsTableViewController
+                //let destination = segue.destinationViewController as!
+                //DetailsTableViewController
                 
                 //destination.mapItems = self.matchingItems.indexOf(<#T##element: MKMapItem##MKMapItem#>)
+                let destination = segue.destinationViewController as!
+                ResultsTableViewController
+                
+                destination.mapItems = self.matchingItems
             }
             else
             {
