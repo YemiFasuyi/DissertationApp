@@ -20,6 +20,7 @@
 		1F889A2B1C8AFA63009013A5 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2A1C8AFA63009013A5 /* ResultsTableViewController.swift */; };
 		1F889A2D1C8AFAA7009013A5 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2C1C8AFAA7009013A5 /* ResultsTableViewCell.swift */; };
 		1F889A2F1C8AFAD1009013A5 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2E1C8AFAD1009013A5 /* RouteViewController.swift */; };
+		1F8B5B931C994FBC002086CD /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B5B921C994FBC002086CD /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		1F889A2A1C8AFA63009013A5 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		1F889A2C1C8AFAA7009013A5 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		1F889A2E1C8AFAD1009013A5 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		1F8B5B921C994FBC002086CD /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailsViewController.swift; path = ../DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		1F889A151C8A2AA7009013A5 /* MapTestingNumber99 */ = {
 			isa = PBXGroup;
 			children = (
+				1F8B5B921C994FBC002086CD /* DetailsViewController.swift */,
 				1F77B2401C983226005ED325 /* DetailsTableViewController.swift */,
 				1F77B2421C983272005ED325 /* DetailsTableViewCell.swift */,
 				1F889A161C8A2AA7009013A5 /* AppDelegate.swift */,
@@ -170,6 +173,7 @@
 				1F889A2D1C8AFAA7009013A5 /* ResultsTableViewCell.swift in Sources */,
 				1F889A2F1C8AFAD1009013A5 /* RouteViewController.swift in Sources */,
 				1F889A171C8A2AA7009013A5 /* AppDelegate.swift in Sources */,
+				1F8B5B931C994FBC002086CD /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,14 +15,12 @@ import CloudKit
 class ViewController: UIViewController, UISearchBarDelegate {
     
     //lazy var searchBar:UISearchBar = UISearchBar(frame: CGRectMake(0, 0, 200, 20))
-    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 0))
+    //lazy var searchBar:UISearchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 0))
     var toPassVariable:String!
+    var searchController:UISearchController!
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
-        searchBar.placeholder = "Search a Service"
-        navigationItem.titleView = searchBar
         //let leftNavBarButton = UIBarButtonItem(customView:searchBar)
         //self.navigationItem.leftBarButtonItem = leftNavBarButton
 
@@ -30,6 +28,12 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
     }
     
+    @IBAction func showSearchBar(sender: AnyObject) {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.searchBar.delegate = self
+        presentViewController(searchController, animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

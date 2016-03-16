@@ -24,6 +24,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var pinAnnotationView:MKPinAnnotationView!
     var toPass:String!
     var mapItems: [MKMapItem] = [MKMapItem]()
+    var detailsName:String!
+    var detailsAddress:String!
+    var detailsNumber:String!
+    var detailsUrl:String!
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -71,6 +75,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             
             for item in response.mapItems {
+                self.detailsName = "\(item.name)"
+                self.detailsNumber = "\(item.phoneNumber)"
+                self.detailsAddress = "\(item.placemark)"
+                self.detailsUrl = "\(item.url)"
+                
                 print("Name = \(item.name)")
                 print("Phone = \(item.phoneNumber)")
                 print("Website= \(item.url)")
@@ -122,12 +131,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        /*let selectedLoc = view.annotation
+        //let selectedLoc = view.annotation
+        //matchingItems.
         
-        print("Annotation '\(selectedLoc!.title!)' has been selected")
+        //print("Annotation '\(selectedLoc!.title!)' has been selected")
+        //print("Description '\(selectedLoc!.)' has been selected")
+        //print("Coordinate '\(selectedLoc!.coordinate)' has been selected")
         
-        
-        let currentLocMapItem = MKMapItem.mapItemForCurrentLocation()
+        /*let currentLocMapItem = MKMapItem.mapItemForCurrentLocation()
         
         let selectedPlacemark = MKPlacemark(coordinate: selectedLoc!.coordinate, addressDictionary: nil)
         let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
@@ -164,7 +175,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let destination = segue.destinationViewController as!
                 DetailsTableViewController
                 
-                destination.mapItems = self.matchingItems
+                //destination.mapItems = self.matchingItems.indexOf(<#T##element: MKMapItem##MKMapItem#>)
             }
             else
             {
