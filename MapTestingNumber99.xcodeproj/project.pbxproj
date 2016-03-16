@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F029C6D1C972C56009853FD /* RetrieveUserNameAndNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F029C6C1C972C56009853FD /* RetrieveUserNameAndNumber.swift */; };
 		1F2B70641C9192FE007A5410 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B70631C9192FE007A5410 /* MapViewController.swift */; };
+		1F77B2411C983226005ED325 /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F77B2401C983226005ED325 /* DetailsTableViewController.swift */; };
+		1F77B2431C983272005ED325 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F77B2421C983272005ED325 /* DetailsTableViewCell.swift */; };
 		1F889A171C8A2AA7009013A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A161C8A2AA7009013A5 /* AppDelegate.swift */; };
 		1F889A191C8A2AA7009013A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A181C8A2AA7009013A5 /* ViewController.swift */; };
 		1F889A1C1C8A2AA7009013A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F889A1A1C8A2AA7009013A5 /* Main.storyboard */; };
@@ -17,10 +20,14 @@
 		1F889A2B1C8AFA63009013A5 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2A1C8AFA63009013A5 /* ResultsTableViewController.swift */; };
 		1F889A2D1C8AFAA7009013A5 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2C1C8AFAA7009013A5 /* ResultsTableViewCell.swift */; };
 		1F889A2F1C8AFAD1009013A5 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2E1C8AFAD1009013A5 /* RouteViewController.swift */; };
+		1F8B5B931C994FBC002086CD /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B5B921C994FBC002086CD /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F029C6C1C972C56009853FD /* RetrieveUserNameAndNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveUserNameAndNumber.swift; sourceTree = "<group>"; };
 		1F2B70631C9192FE007A5410 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		1F77B2401C983226005ED325 /* DetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailsTableViewController.swift; path = ../DetailsTableViewController.swift; sourceTree = "<group>"; };
+		1F77B2421C983272005ED325 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailsTableViewCell.swift; path = ../DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		1F889A131C8A2AA7009013A5 /* MapTestingNumber99.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTestingNumber99.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F889A161C8A2AA7009013A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F889A181C8A2AA7009013A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +39,7 @@
 		1F889A2A1C8AFA63009013A5 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		1F889A2C1C8AFAA7009013A5 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		1F889A2E1C8AFAD1009013A5 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		1F8B5B921C994FBC002086CD /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailsViewController.swift; path = ../DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,9 @@
 		1F889A151C8A2AA7009013A5 /* MapTestingNumber99 */ = {
 			isa = PBXGroup;
 			children = (
+				1F8B5B921C994FBC002086CD /* DetailsViewController.swift */,
+				1F77B2401C983226005ED325 /* DetailsTableViewController.swift */,
+				1F77B2421C983272005ED325 /* DetailsTableViewCell.swift */,
 				1F889A161C8A2AA7009013A5 /* AppDelegate.swift */,
 				1F889A181C8A2AA7009013A5 /* ViewController.swift */,
 				1F889A1A1C8A2AA7009013A5 /* Main.storyboard */,
@@ -76,6 +87,7 @@
 				1F889A1D1C8A2AA7009013A5 /* Assets.xcassets */,
 				1F889A1F1C8A2AA7009013A5 /* LaunchScreen.storyboard */,
 				1F889A221C8A2AA7009013A5 /* Info.plist */,
+				1F029C6C1C972C56009853FD /* RetrieveUserNameAndNumber.swift */,
 			);
 			path = MapTestingNumber99;
 			sourceTree = "<group>";
@@ -152,12 +164,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F77B2411C983226005ED325 /* DetailsTableViewController.swift in Sources */,
 				1F889A2B1C8AFA63009013A5 /* ResultsTableViewController.swift in Sources */,
 				1F2B70641C9192FE007A5410 /* MapViewController.swift in Sources */,
+				1F77B2431C983272005ED325 /* DetailsTableViewCell.swift in Sources */,
 				1F889A191C8A2AA7009013A5 /* ViewController.swift in Sources */,
+				1F029C6D1C972C56009853FD /* RetrieveUserNameAndNumber.swift in Sources */,
 				1F889A2D1C8AFAA7009013A5 /* ResultsTableViewCell.swift in Sources */,
 				1F889A2F1C8AFAD1009013A5 /* RouteViewController.swift in Sources */,
 				1F889A171C8A2AA7009013A5 /* AppDelegate.swift in Sources */,
+				1F8B5B931C994FBC002086CD /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,6 +23,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
     var toPass:String!
+    var mapItems: [MKMapItem] = [MKMapItem]()
+    var detailsName:String!
+    var detailsAddress:String!
+    var detailsNumber:String!
+    var detailsUrl:String!
+    
+    @IBOutlet weak var mapType: UISegmentedControl!
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -41,6 +48,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
             self.mapView.showsUserLocation = true
+            self.mapView.delegate = self
+            mapType.setWidth(65, forSegmentAtIndex: 0)
+            mapType.setWidth(65, forSegmentAtIndex: 1)
+            mapType.setWidth(65, forSegmentAtIndex: 2)
         }
     }
     
@@ -69,8 +80,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             
             for item in response.mapItems {
+                self.detailsName = "\(item.name)"
+                self.detailsNumber = "\(item.phoneNumber)"
+                self.detailsAddress = "\(item.placemark)"
+                self.detailsUrl = "\(item.url)"
+                
                 print("Name = \(item.name)")
                 print("Phone = \(item.phoneNumber)")
+                print("Website= \(item.url)")
+                print("Address= \(item.placemark)")
                 
                 self.matchingItems.append(item as MKMapItem)
                 print("Matching items = \(self.matchingItems.count)")
@@ -86,16 +104,60 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.setRegion(coordinateRegion, animated: true)
         
     }
-    
-    
     func addPinToMapView(title: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = title
+        
         mapView.addAnnotation(annotation)
     }
     
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            pinView!.rightCalloutAccessoryView = UIButton(type:.DetailDisclosure) as UIButton
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        return pinView
+    }
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        //let selectedLoc = view.annotation
+        //matchingItems.
+        
+        //print("Annotation '\(selectedLoc!.title!)' has been selected")
+        //print("Description '\(selectedLoc!.)' has been selected")
+        //print("Coordinate '\(selectedLoc!.coordinate)' has been selected")
+        
+        /*let currentLocMapItem = MKMapItem.mapItemForCurrentLocation()
+        
+        let selectedPlacemark = MKPlacemark(coordinate: selectedLoc!.coordinate, addressDictionary: nil)
+        let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
+        
+        
+        mapItems = [selectedMapItem, currentLocMapItem]
+        print(selectedMapItem)*/
+        
+        if control == view.rightCalloutAccessoryView {
+            performSegueWithIdentifier("DetailsSegue", sender: self)
+        }
+        
+    }
+
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError){
         print("Error: " + error.localizedDescription)
     }
@@ -104,20 +166,37 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func changeMapType(sender: AnyObject) {
-        if mapView.mapType == MKMapType.Standard {
-            mapView.mapType = MKMapType.Satellite
-        } else {
+    
+    @IBAction func changeMapView(sender: AnyObject) {
+        if mapType.selectedSegmentIndex == 0{
             mapView.mapType = MKMapType.Standard
+        }else if mapType.selectedSegmentIndex == 1{
+            mapView.mapType = MKMapType.Satellite
+        }else if mapType.selectedSegmentIndex == 2{
+            mapView.mapType = MKMapType.Hybrid
         }
+        
     }
     override func prepareForSegue(segue: UIStoryboardSegue,
         sender: AnyObject?) {
+            if(segue.identifier == "DetailsSegue")
+            {
+                //let destination = segue.destinationViewController as!
+                //DetailsTableViewController
+                
+                //destination.mapItems = self.matchingItems.indexOf(<#T##element: MKMapItem##MKMapItem#>)
+                let destination = segue.destinationViewController as!
+                ResultsTableViewController
+                
+                destination.mapItems = self.matchingItems
+            }
+            else
+            {
+                let destination = segue.destinationViewController as!
+                ResultsTableViewController
             
-            let destination = segue.destinationViewController as!
-            ResultsTableViewController
-            
-            destination.mapItems = self.matchingItems
+                destination.mapItems = self.matchingItems
+            }
     }
 }
 
