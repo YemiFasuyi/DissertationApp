@@ -57,7 +57,7 @@ class RouteViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         let request = MKDirectionsRequest()
         request.source = MKMapItem.mapItemForCurrentLocation()
         request.destination = destination!
-        request.requestsAlternateRoutes = true
+        request.requestsAlternateRoutes = false
         request.transportType = .Automobile
         
         let directions = MKDirections(request: request)

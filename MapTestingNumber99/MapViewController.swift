@@ -27,6 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var mapItems: [MKMapItem] = [MKMapItem]()
     var detailsName:String!
     var estimatedInfo = NSMutableArray()
+    var selectedPin:MKPlacemark? = nil
     
     
     @IBOutlet weak var mapType: UISegmentedControl!
@@ -130,7 +131,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return pinView
     }
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
         if control == view.rightCalloutAccessoryView {
             performSegueWithIdentifier("DetailsSegue", sender: self)
         }
