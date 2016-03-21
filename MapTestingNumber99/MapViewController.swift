@@ -12,6 +12,7 @@ import CoreLocation
 import Foundation
 import AddressBook
 import Contacts
+import Parse
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
     
@@ -28,6 +29,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var detailsName:String!
     var estimatedInfo = NSMutableArray()
     var selectedPin:MKPlacemark? = nil
+    var userFullName:String!
+    var userPhoneNumber:String!
     
     
     @IBOutlet weak var mapType: UISegmentedControl!
@@ -55,6 +58,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             mapType.setWidth(65, forSegmentAtIndex: 2)
             GatheringData()
         }
+
     }
     
     // MARK: - Location Delegate Methods
@@ -195,7 +199,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
 
                 print(userFullName)
+                self.userFullName = userFullName
                 print(userPhoneNumber)
+                self.userPhoneNumber = userPhoneNumber
+                passDataToParseServer()
                 break;
             }
         }
@@ -230,6 +237,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         return false
 
+    }
+    func passDataToParseServer(){
+        let usersPersonalInfo = PFObject(className: "UserInfo")
+        usersPersonalInfo["name"] = self.userFullName
+        usersPersonalInfo["phoneNumber"] = self.userPhoneNumber
+        usersPersonalInfo["latitude"] = self.locationManager.location?.coordinate.latitude
+        usersPersonalInfo["longitude"] = self.locationManager.location?.coordinate.longitude
+        usersPersonalInfo["dateAndTime"] = NSDate()
+        
+        usersPersonalInfo.saveEventually()
+        usersPersonalInfo.saveInBackground()
     }
 }
 
