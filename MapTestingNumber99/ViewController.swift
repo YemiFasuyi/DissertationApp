@@ -19,6 +19,8 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        let logoImage:UIImage = UIImage(named: "Title")!
+        self.navigationItem.titleView = UIImageView(image: logoImage)
         
     }
     
