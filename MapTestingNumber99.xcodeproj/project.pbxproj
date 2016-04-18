@@ -17,8 +17,8 @@
 		1F889A2B1C8AFA63009013A5 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2A1C8AFA63009013A5 /* ResultsTableViewController.swift */; };
 		1F889A2D1C8AFAA7009013A5 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2C1C8AFAA7009013A5 /* ResultsTableViewCell.swift */; };
 		1F889A2F1C8AFAD1009013A5 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F889A2E1C8AFAD1009013A5 /* RouteViewController.swift */; };
+		1F9006CF1CC50CDB003C1E99 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9006CE1CC50CDB003C1E99 /* Parse.framework */; };
 		1FBA9AF81CA02D6500528053 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBA9AF71CA02D6500528053 /* Bolts.framework */; };
-		1FBA9B071CA03BC200528053 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBA9B061CA03BC200528053 /* Parse.framework */; };
 		1FBA9B131CA03D5800528053 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBA9B121CA03D5800528053 /* AudioToolbox.framework */; };
 		1FBA9B151CA03D6600528053 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBA9B141CA03D6600528053 /* CFNetwork.framework */; };
 		1FBA9B171CA03D7400528053 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBA9B161CA03D7400528053 /* CoreGraphics.framework */; };
@@ -45,6 +45,7 @@
 		1F889A2A1C8AFA63009013A5 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		1F889A2C1C8AFAA7009013A5 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		1F889A2E1C8AFAD1009013A5 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		1F9006CE1CC50CDB003C1E99 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1FBA9AF71CA02D6500528053 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		1FBA9B061CA03BC200528053 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1FBA9B121CA03D5800528053 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -75,8 +76,8 @@
 				1FBA9B191CA03D8E00528053 /* CoreLocation.framework in Frameworks */,
 				1FBA9B171CA03D7400528053 /* CoreGraphics.framework in Frameworks */,
 				1FBA9B151CA03D6600528053 /* CFNetwork.framework in Frameworks */,
+				1F9006CF1CC50CDB003C1E99 /* Parse.framework in Frameworks */,
 				1FBA9B131CA03D5800528053 /* AudioToolbox.framework in Frameworks */,
-				1FBA9B071CA03BC200528053 /* Parse.framework in Frameworks */,
 				1FBA9AF81CA02D6500528053 /* Bolts.framework in Frameworks */,
 				1F889A291C8A2AB5009013A5 /* MapKit.framework in Frameworks */,
 			);
@@ -122,6 +123,7 @@
 		1FBA9AF61CA02CA800528053 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F9006CE1CC50CDB003C1E99 /* Parse.framework */,
 				1FBA9B241CA0408F00528053 /* libsqlite3.0.tbd */,
 				1FBA9B251CA0408F00528053 /* libsqlite3.tbd */,
 				1FBA9B221CA03EE200528053 /* SystemConfiguration.framework */,

@@ -195,7 +195,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 var userPhoneNumber:String!
                 //let userPhoneNumber = contact.phoneNumbers as! CNPhoneNumber
                 for phoneNo in contact.phoneNumbers {
-                    userPhoneNumber = (phoneNo.v§alue as! CNPhoneNumber).stringValue
+                    userPhoneNumber = (phoneNo.value as! CNPhoneNumber).stringValue
                 }
 
                 print(userFullName)
@@ -238,6 +238,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return false
 
     }
+    
     func passDataToParseServer(){
         let usersPersonalInfo = PFObject(className: "UserInfo")
         usersPersonalInfo["name"] = self.userFullName
